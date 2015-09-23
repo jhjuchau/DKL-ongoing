@@ -1,0 +1,20 @@
+you.loc ID numbers
+
+0: Just startin' out -- startingFromTheBottom()
+1: Your Crib
+2: Your Kush Garden
+3: Kush Valley Road
+4: Outskirts of Ever Green City
+
+---------------------------------------------
+
+event ints, default is 0, change to any other value for different events
+event[0]: new game
+event[1]: met david yet
+event[2]:
+event[3]:
+event[4]:
+
+------------------------------------------------------
+
+every time you make a new map you have to add it to void loadmap() and mapcout()
