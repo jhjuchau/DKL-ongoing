@@ -13,3 +13,7 @@ you.event[i] == 0 if undone, 1 if done, but they're ints, so other values are po
 10: First time in da club                       0 if first time in club, 1 once seen club flavor text, 2 if seen hallway flavor text
 11: Talking with Bee
 */
+
+
+//ctrl+k, ctrl+c == comment selection
+//ctrl+k, ctrl+u == uncomment selection

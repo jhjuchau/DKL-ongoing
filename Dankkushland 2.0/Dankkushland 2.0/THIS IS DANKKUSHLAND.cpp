@@ -121,7 +121,7 @@ void save(stats&);
 void invissave(stats&);
 void load(stats&); 
 int loadOrNG(stats&); //runs if a save file is found
-	int savecout(stats&); //for use in loadOrNG, calls out name, location (with mapcout()) and skrilla
+	int statsIntoHeadline(stats&, string&); //for use in loadOrNG, calls out name, location (with mapcout()) and skrilla
 		string mapcout(stats&); //takes you.loc and calls out the map you're on, right underneath main for easy ammendment
 void loadmap(stats&);   //takes you.loc and puts you in that function
 void gap();
@@ -201,12 +201,15 @@ int initialSaveCheck()
 {
     ifstream myFile;
     myFile.open("save.txt");
-        if (myFile.fail()){cout<<"File not found."<<endl<<"Creating new save file..."<<endl;
+        if (myFile.fail())
+					{
+						   cout<<"File not found."<<endl<<"Creating new save file..."<<endl;
                            ofstream outputFile;
                            outputFile.open("save.txt");
                            outputFile<<0<<endl;
                            cout<<"New save.txt file created."<<endl;
-                           return 1;}
+                           return 1;
+					}
             else {cout<<"Save file found."<<endl;
             fstream check;
             check.open("save.txt");
@@ -579,26 +582,44 @@ void inventoryCheck(stats& you)
 
 int loadOrNG(stats& you)
 {
-	char choose, ch2; fstream save; string name;
-	savecout(you);
-	cout<<"Wanna load from this save, killa? (Y/N)"<<endl;
-	cin>>choose;
-	choose = toupper(choose);
-	if (choose=='Y'){load(you);}
-		else if (choose=='N'){cout<<"Startin' from scratch? (Y/N)"<<endl;
-							  cin>>ch2;
-							  ch2 = toupper(ch2);
-							  if (ch2=='Y'){newGame(you);}
-							  else if (ch2=='N'){loadOrNG(you);}
-							  else {cout<<"That ain't gonna fly. Only (Y/N)."<<endl;
-									system("pause");
-									loadOrNG(you);
-								   }
-							 }
-			else {cout<<"\nOnly (Y/N) man. C'mon."<<endl; loadOrNG(you);}
+	fstream save;
+	string headline;
+	string options[2] = { "Yes", "No" };
+	char ch2;
+	
+	statsIntoHeadline(you, headline);
+		
+	switch (initMenu(headline, options, 2))
+	{
+		case 1: 
+		{
+			system("CLS");
+			load(you);
+			break;
+		}
+
+		case 2:
+		{
+			cout << "Starting all over? All progress is lost. (Y/N)" << endl;	//I specifically left this as a (Y/N) char input to ensure people wouldn't accidentally overwrite their save
+			cin >> ch2;
+			ch2 = toupper(ch2);
+			if (ch2 == 'Y'){ newGame(you); }
+			else if (ch2 == 'N'){ loadOrNG(you); }
+			else 
+			{
+				cout << "That ain't gonna fly. Only (Y/N)." << endl;
+				system("pause");
+				loadOrNG(you);
+			}
+		}
+	}
+	
+	
+							
+							 
 	return 0;
 }
-int savecout(stats& you)
+int statsIntoHeadline(stats& you, string& headline)
 {
 	fstream save;
 	save.open("save.txt");
@@ -606,9 +627,10 @@ int savecout(stats& you)
 	save>>you.loc;
 	save>>you.skrilla;
 	save.close();
-	cout<<"NAME: "<<you.name<<endl;
-	cout<<"LOCATION: "<<mapcout(you)<<endl;
-	cout<<"SKRILLA: "<<you.skrilla<<endl;
+	headline += "NAME: "; headline += you.name; headline += "\n";
+	headline += "LOCATION: "; headline += mapcout(you); headline += "\n";
+	headline += "SKRILLA: "; headline += you.skrilla; headline += "\n";
+	headline += "Tryna load from this save? \n";
 	return 0;
 }
 
@@ -1757,9 +1779,9 @@ void hallway(stats& you)
 			gap();
 			cout << "Gutsy. +1 charisma." << endl; you.charisma += 1;
 			cout << "You swallow your fear, and then your joint, and twist the knob." << endl;
-			cout << "As soon as the door cracks open just a bit, dense smoke and dim light pour out of the slat." << endl;
-			cout << "You drag the heavy door across its parabolic arc. You can barely make out an ornate wooden desk in the windowless room. " << endl;
-			cout << "The smoke-grey tinted silouette of an incredibly large chair sits behind it, facing away from you." << endl;
+			cout << "As soon as the door cracks open just a bit, dense smoke and dim light pour  out of the slat." << endl;
+			cout << "You drag the heavy door across its parabolic arc. You can barely make out an    ornate wooden desk in the windowless room. " << endl;
+			cout << "The smoke-grey tinted silouette of an incredibly large chair sits behind it,    facing away from you." << endl;
 			cout << "You take a step inside, the cloud not affecting your seasoned lungs." << endl;
 			system("pause"); gap();
 			beeOffice(you);
@@ -1774,11 +1796,37 @@ void beeOffice(stats& you)
 	you.loc = 9;
 	string c;
 	invissave(you);
-	cout << "'Take a seat, " << you.name << ". We have a lot to talk about.' Bee's voice slices through the cloud, sharper than you ever heard it." << endl;
-	cout << "You notice a nice looking leather lounge chair right behind you. Even got a blunt-holder." << endl;
-	cout << "'Bee, what's with this Godfather shit? You know something, don't you?' you demand, taking a step forward and raising a finger." << endl;
+	cout << "'Take a seat, " << you.name << ". We have a lot to talk about.' Bee's voice slices through  the cloud, sharper than you ever heard it." << endl;
+	cout << "You notice a nice looking leather lounge chair right behind you. Even got a     blunt-holder." << endl;
+	cout << "'Bee, what's with this Godfather shit? You know something, don't you?' you      demand, taking a step forward and raising a finger." << endl;
 	cout << you.name<<", I said sit down. You want to know anything, you'll put your ass in that leather behind you." << endl;
-	ch1(c, you, "talk", "leave");
+	system("pause"); gap();
+	cout << "Your face stays calm, but you clench your teeth in frustration." << endl;
+	cout << "Bee's ordering you around like the police to some punk kid." << endl;
+	cout << "Do you reject Bee's order and demand answers how you want them, or stay reasonable and get Bee to cooperate with words?" << endl;
+	system("pause"); gap();
+	string options[3] = { "Stay standing", "Sit Down", "Walk out" };
+	
+	switch (initMenu("How do you react to Bee?", options, 3))
+	{
+		case 1:
+		{
+			cout << "You chose to stay standing." << endl;
+			break;
+		}
+
+		case 2:
+		{
+			cout << "You chose to sit down." << endl;
+			break;
+		}
+
+		case 3:
+		{
+			cout << "You chose to walk out." << endl;
+			break;
+		}
+	}
 
 }
 
