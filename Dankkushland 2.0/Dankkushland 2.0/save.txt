@@ -1,4 +1,4 @@
 Jotaro
-0 500 320 320 60 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-Nothing Nothing Nothing Nothing Nothing Nothing Nothing . Nothing Nothin' to see here. 
+9 500 320 320 60 1 3 0
+1 1 0 0 3 1 1 2 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+RogueNinjaHeadband Nothing Nothing Nothing Nothing Nothing Nothing othin' to see here. 
