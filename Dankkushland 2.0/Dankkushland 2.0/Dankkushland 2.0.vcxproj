@@ -15,6 +15,7 @@
     <ClInclude Include="dankLib.h" />
     <ClInclude Include="eventguide.h" />
     <ClInclude Include="mapguide.h" />
+    <ClInclude Include="MenusWithArrowKeys.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="THIS IS DANKKUSHLAND.cpp" />

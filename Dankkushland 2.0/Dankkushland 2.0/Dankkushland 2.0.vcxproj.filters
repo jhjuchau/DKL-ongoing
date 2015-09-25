@@ -27,6 +27,9 @@
     <ClInclude Include="eventguide.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MenusWithArrowKeys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="THIS IS DANKKUSHLAND.cpp">

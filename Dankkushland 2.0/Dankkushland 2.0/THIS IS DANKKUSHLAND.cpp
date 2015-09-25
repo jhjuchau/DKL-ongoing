@@ -16,12 +16,23 @@
 #include <time.h>
 #include <stdlib.h> //for sleep()
 #include <cstdlib>
+#include <conio.h> //for _getch()
 #include <Windows.h>//for system("CLS")
 #include <fstream>
 
 
 #include "dankLib.h"
 #include "battleSystem.h"
+#include "MenusWithArrowKeys.h"
+
+#define UPKEY 72
+#define DOWNKEY 80
+#define LEFTKEY 75
+#define RIGHTKEY 77
+#define ENTER 13
+#define SPACE 32
+#define ESC 27
+
 using namespace std;
 
 
@@ -170,7 +181,7 @@ void test();
 int main()
 {
 	test();
-	cout<<"v. 8j 'Hella Map Prototypes Edition'" <<endl;
+	cout<<"v. 8h 'we github now' Edition" <<endl;
     int first;
     stats you;
     first = initialSaveCheck();
@@ -565,6 +576,7 @@ void inventoryCheck(stats& you)
 	}
 	cout<<"You currently have "<<you.skrilla<<" SKRILLA."<<endl;
 }
+
 int loadOrNG(stats& you)
 {
 	char choose, ch2; fstream save; string name;
@@ -1700,7 +1712,7 @@ void hallway(stats& you)
 				cout << "You turn to Alex again. 'Know why Bee'll kill me if I go in?'" << endl;
 				cout << "'Nope.' he says, not even glancing up." << endl;
 				cout << "'Help me out, man. I already got ninety-nine problems today.'" << endl;
-				cout << "'I think your biggest problem is that you're hella annoying.' He sighs, not even looking at you." << endl;
+				cout << "'I think your biggest problem is that you're hella annoying.' He sighs, not even glancing at you." << endl;
 				cout << "You make a mental note to take Alex off your Kushmas card list." << endl;
 				system("pause"); gap();
 			}
@@ -1721,18 +1733,23 @@ void hallway(stats& you)
 			cout << "You make the informed decision to not bother Bee." << endl;
 			cout << "In terms of realism, this is the most reasonable choice, as there is a guarantee that Bee will try to harm you, ";
 			cout<<"but no guarantee that Bee knows anything vital. Your decision was based on sound logic."<< endl;
-			cout << "But you're a coward and afraid. -3 charisma." << endl; 
-			you.charisma -= 3;
-			cout << "As you turn to leave, you hear the door to Bee's office swings open." << endl;
+			cout << "You smart, but you're a coward and afraid. +2 intelligence, -2 charisma." << endl; 
+			you.intel += 2;
+			you.charisma -= 2;
+			system("pause");
+			cout << "As you turn to leave, you hear the door to Bee's office swing open." << endl;
 			cout << "'That's " << you.name << ", right, La?' you hear a familiar voice say." << endl;
 			cout << "'Yep.' Alex responds curtly. 'Want to see ";
 			if (you.name=="Jackie" || you.name=="Hillary" || you.name=="Chelsea" || you.name=="Cheyenne" || you.name=="Katie")
 			{cout << "her?" << endl;}
-			else { cout << "him?" << endl; }
+			else { cout << "them?" << endl; }
 			cout << "'Yes. Now.' the voice demands, and your hear footsteps walk to a corner of the office.";
 			cout << "You turn, but Alex is already up and has you by the arm, guiding you inside." << endl;
-			cout << "He throws you in an armchair across from an enormous wooden desk, and walks out the room, ";
-			cout << "slamming the door with the force of an interrupted Counter Strike player." << endl;
+			cout << "The inside of the office has more smoke than an ogre has layers. No windows either; prime hotbox spot." << endl;
+			cout << "Before you can react, you're standing in front of Bee's desk, and Alex storms out the room, ";
+			cout << "slamming the door with the force of a guy whose mother takes all his blankets while he sleeps." << endl;
+			system("pause"); gap();
+			beeOffice(you);
 		}
 
 		if (c == "enter")
@@ -1740,8 +1757,13 @@ void hallway(stats& you)
 			gap();
 			cout << "Gutsy. +1 charisma." << endl; you.charisma += 1;
 			cout << "You swallow your fear, and then your joint, and twist the knob." << endl;
-			cout << "You don't know why you're surprised, but it's locked." << endl;
-			cout << "The frame don't look that strong, " << endl;
+			cout << "As soon as the door cracks open just a bit, dense smoke and dim light pour out of the slat." << endl;
+			cout << "You drag the heavy door across its parabolic arc. You can barely make out an ornate wooden desk in the windowless room. " << endl;
+			cout << "The smoke-grey tinted silouette of an incredibly large chair sits behind it, facing away from you." << endl;
+			cout << "You take a step inside, the cloud not affecting your seasoned lungs." << endl;
+			system("pause"); gap();
+			beeOffice(you);
+
 		}
 	}
 
@@ -1752,8 +1774,10 @@ void beeOffice(stats& you)
 	you.loc = 9;
 	string c;
 	invissave(you);
-	
-	cout << "" << endl;
+	cout << "'Take a seat, " << you.name << ". We have a lot to talk about.' Bee's voice slices through the cloud, sharper than you ever heard it." << endl;
+	cout << "You notice a nice looking leather lounge chair right behind you. Even got a blunt-holder." << endl;
+	cout << "'Bee, what's with this Godfather shit? You know something, don't you?' you demand, taking a step forward and raising a finger." << endl;
+	cout << you.name<<", I said sit down. You want to know anything, you'll put your ass in that leather behind you." << endl;
 	ch1(c, you, "talk", "leave");
 
 }
