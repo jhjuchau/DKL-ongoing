@@ -113,6 +113,7 @@ void davidStore(stats&);
 void daClub(stats&);
 	void hallway(stats&);
 	void beeOffice(stats&);
+		void hillaryCall();
 
 //undefined
 void EVdowntown(stats&);
@@ -164,6 +165,7 @@ int main()
 
 void test()
 {	
+	
 }
 
 
@@ -1767,37 +1769,218 @@ void beeOffice(stats& you)
 	string c;
 	invissave(you);
 	cout << "'Take a seat, " << you.name << ". We have a lot to talk about.' Bee's voice slices through  the cloud, sharper than you ever heard it." << endl;
-	cout << "You notice a nice looking leather lounge chair right behind you. Even got a     blunt-holder." << endl;
+	cout << "You notice a nice looking leather lounge chair right behind you." << endl;
+	cout<< "It's even got a blunt-holder. You make a note to hit up Ikea." << endl;
+	system("pause"); gap();
 	cout << "'Bee, what's with this Godfather shit? You know something, don't you?' you      demand, taking a step forward and raising a finger." << endl;
-	cout << you.name<<", I said sit down. You want to know anything, you'll put your ass in that leather behind you." << endl;
+	cout << "'"<<you.name << ", I said sit down. You want to know anything, you'll put your ass in the leather behind you.'" << endl;
 	system("pause"); gap();
-	cout << "Your face stays calm, but you clench your teeth in frustration." << endl;
-	cout << "Bee's ordering you around like the police to some punk kid." << endl;
-	cout << "Do you reject Bee's order and demand answers how you want them, or stay reasonable and get Bee to cooperate with words?" << endl;
+	cout << "Your face stays stone cold, but you clench your teeth in frustration." << endl;
+	cout << "Bee's ordering you around like the popo to some street punk." << endl;
+	cout << "Do you reject Bee's order and demand answers how you want them, or stay         reasonable and get Bee to cooperate with words?" << endl;
 	system("pause"); gap();
+
+
 	string options[3] = { "Stay standing", "Sit Down", "Walk out" };
-	
+	boolean standing = false;
 	switch (initMenu("How do you react to Bee?", options, 3))
 	{
-		case 1:
+	case 1:
+	{
+		if (you.swole >= 5)	//you successfully stay standing
 		{
-			cout << "You chose to stay standing." << endl;
-			break;
+			standing = true;
+			cout << "You chose to stay standing, and you SWOLE enough to keep your knees from buckling." << endl;
+			cout << "You do a few squats in celebration of your stable joint structure. +3 swole." << endl;
+			you.swole += 3;
+			if (you.event[11] == 1)
+			{
+				cout << "How you gonna puss out when you're outside, but be all ballsy when shit gets dangerous? You strange, fool. +1 charisma." << endl;
+				you.charisma += 1;
+			}
+			if (you.event[11] == 2)
+			{
+				cout << "You been bold as fuck. +2 charisma." << endl;
+				you.charisma += 2;
+				you.event[11] = 3;
+			}
+			system("pause"); gap();
 		}
 
-		case 2:
+		else if (you.intel >= 10)
 		{
-			cout << "You chose to sit down." << endl;
-			break;
+			standing = true;
+			cout << "You chose to stay standing. Your knees almost gave out, ";
+			cout << "but with your overwhelming SMARTS, your comprehension of gravity and the universe allowed you to levitate off the ground." << endl;
+			cout << "You quickly corporealize this understanding into an ORB OF LEVITATION, which drains your mental energy significantly." << endl;
+			cout << "You lose 5 intelligence out of exhaustion." << endl;
+			newItem(you, "LevitationOrb");
+			you.intel -= 5;
+			system("pause"); gap();
+			if (you.event[11] == 1)
+			{
+				cout << "How you gonna puss out when you're outside, but be all ballsy when shit gets dangerous? You strange, fool. +1 charisma." << endl;
+				you.charisma += 1;
+			}
+			if (you.event[11] == 2)
+			{
+				cout << "You been bold as fuck. +2 charisma." << endl;
+				you.charisma += 2;
+				you.event[11] = 3;
+			}
+			system("pause"); gap();
 		}
 
-		case 3:
+		else if (you.charisma >= 8)
 		{
-			cout << "You chose to walk out." << endl;
-			break;
+			standing = true;
+			cout << "You chose to stay standing. Your knees almost gave out, but all that CHARISMA turned it into a sickass pose." << endl;
+			cout << "Proud of yourself, you strut over to Bee's desk, grab a pen and paper and write down how to pull it off." << endl;
+			newItem(you, "SickPoseInstructions");
+			if (you.event[11] == 1)
+			{
+				cout << "How you gonna puss out when you're outside, but be all ballsy when shit gets dangerous? You strange, fool. +1 charisma." << endl;
+				you.charisma += 1;
+			}
+			if (you.event[11] == 2)
+			{
+				cout << "You been bold as fuck. +2 charisma." << endl;
+				you.charisma += 2;
+				you.event[11] = 3;
+			}
+			system("pause"); gap();
 		}
+
+
+
+		else //you unsuccesfully try to stand, falling back into the chair
+		{
+			cout << "You chose to stay standing. Unfortunately, you don't have enough SWOLE to keep your nervous knees from buckling." << endl;
+			cout << "You stumble backwards and fall into the chair. Embarassing af, bruh. -2 charisma." << endl;
+			you.charisma -= 2;
+			standing = false;
+			cout << "You hear a soft chuckle from behind the chair." << endl;
+		}
+		break;
 	}
 
+	case 2:
+	{
+		standing = false;
+		cout << "You chose to sit down. You don't got nothing to gain from pressing the issue." << endl;
+		cout << "Smart choice. +2 SMARTS. But that's pansy shit. -2 CHARISMA." << endl;
+		you.intel += 2; you.charisma -= 2;
+		cout << "You hear a soft chuckle from behind the chair." << endl;
+		break;
+	}
+
+	case 3:
+	{
+		standing = true;
+		cout << "'Feh, I don't need any pathetic friends.' you spit as you turn towards the door." << endl;
+		cout << "You grab the knob and turn it harder than you turned on the Hidden Leaf Village." << endl;
+		cout << "Your EDGE level has increased!" << endl;
+		you.edge++;
+		//Insert Alex boss fight here.
+		cout << "*INCLUDE* alex boss fight" << endl;
+		break;
+	}
+	}
+
+	if (standing == true)
+	{
+		cout << "Through the kush mist, you see Bee's arm raise from behind the chair, holding a switch with a single button." << endl;
+		cout << "Bee's thumb drops on the button, and you hear a crescendo of mechanical whirring from behind you." << endl;
+		cout << "Your instincts tell you to move, and dive to the right side of the room, hitting the wall and staggering. You turn towards Bee." << endl;
+		system("pause"); gap();
+		cout << "You can make out the faint, blurry side profile of Bee, thumb still on that     switch. You glance quickly around and see that the";
+		cout << "chair that Bee offered you is now encased in a glass bubble, slowly filling up with a blue-tinted smoke." << endl;
+		cout << "As a seasoned dealer, you recognize the smoke as Sea Mist." << endl;
+		cout << "It's a halluginogenic strain so potent that, even with your tolerance, you'd probably fall into a week-long coma." << endl;
+		cout << "You stand up fully as Bee sets down the switch." << endl;
+		system("pause"); gap();
+		cout << "Through the deep kush vapors, you hear the familiar scrape of a lighter, and see a brief spark that lights up near Bee's face. " << endl;
+		cout << "You see her profile clearly for the first time in months, maybe years. The end   of the pipe near her face glows a dull red." << endl;
+		cout << "She breathes heavily, but it doesn't sound like she's taking a hit from her pipe. Sounds more like a sigh." << endl;
+		system("pause"); gap();
+		cout << "After a moment, Bee sets her pipe on her desk and stands up. She reaches out to the darkness behind her desk and pulls on a drawstring you couldn't see before." << endl;
+		cout << "Bright midday sun floods the room. There was an enormous window hidden beneath a drapery you couldn't see before. She reaches to one end of the giant window and pulls." << endl;
+		cout << "The window opens, and the smoke from the room vacuums quickly outside, fleeing, as if not even the air wanted to know what comes next." << endl;
+		system("pause"); gap();
+		cout << "Bee turns back towards her desk, and pulls a Glock from the drawer underneath.  You see it's unloaded, but that's bound to change." << endl;
+		cout << "'I usually keep that smoke in here as a defense. It's a strain of my own creation: White Widow, so dank that gunpowder just won't light.' she rummages around the drawer, probably looking for a magazine." << endl;
+		cout << "You start looking for an exit, but the only ways out are the door or the window, and both are easy targets." << endl;
+		system("pause"); gap();
+		cout << "Your eyes frantically look around, while Bee pulls out the cartridge she was looking for. With a clean movement, she loads the Glock. Bee's lips harden." << endl;
+		cout << "She turns to face you, and finally you get a straight look at her face. But it's not as you remember." << endl;
+		cout << "Bee has an eyepatch covering her left eye, a scar beginning somewhere underneath it, running vertically along her face, ending below her chin." << endl;
+		cout << "Your eyebrows furrow down. She never looked like that. Bee feels your confusion and closes her good eye. She turns her head to the floor, and pensively traces ";
+		cout << "the scar along her face. She shakes her head once, then looks up, eyes harder than flint, staring right into your eyes." << endl;
+		cout << "She points the Glock at your chest with one hand and pulls back the hammer with the other. " << endl;
+		system("pause"); gap();
+		cout << "She don't look like the Hillary Li you used to know." << endl;
+		system("pause"); gap();
+		cout << "'This goes deeper than a strain of weed, " << you.name << ". But there's really no time to  explain.'" << endl;
+		cout << "She uses her free hand to press the switch on her desk again. The glass bubble   over the lounge chair raises up." << endl;
+		cout << "'Someone from the Conclave will be here in minutes. Neither of us can take them. They want you out of the picture.'" << endl;
+		cout << "'Conclave?' you ask, stalling, hoping for a way out." << endl;
+		cout << "'Good, you don't know. It's better that way.' She lowers the Glock, but only by inches." << endl;
+		system("pause"); gap();
+		cout << "'Listen, " << you.name << ", we've got one shot to make this work.'" << endl;
+		cout << "Hillary's voice is quiet this time. No authoritative edge."<<endl;
+		system("pause"); gap();
+		cout << "'You get in that chair, you drift off on that Sea Mist for a week or two, and   I'll make everything work out. You wake up in your house with your Grandaddy    Purple, Gemini, ";
+		cout << "and all your friends stay completely safe. I swear to you,   all our problems will be solved.'"<<endl;
+		cout << "Hillary's voice starts getting shaky, like she's desperate." << endl;
+		system("pause"); gap();
+		cout<< "'Hillary...' you start, raising a hand. In response, she flicks off the safety   and aims for your forehead." << endl;
+		cout << "Hillary takes a deep breath, and her voice regains composure. 'If you don't,     this whole town, and everyone in it, are going straight to hell.'" << endl;
+		cout << "'Everyone I care about, everyone you care about, gone. You need to be out of the picture. You choose to stand, I'll make sure you fall.' Hillary's eyes glint with determination." << endl;
+		system("pause"); gap();
+		cout << "'Hillary, just tell me what's happening. If something's going down, let me--'" << endl;
+		cout <<  "You feel your heart plummet as Hillary chuckles." << endl;
+		system("pause"); gap();
+		cout << "'Nah, "<<you.name<<", there's only one thing you need to know.'" << endl;
+		cout << "'If you don't get in that chair...'" << endl;
+		system("pause"); gap();
+		hillaryCall();
+		string options[2] = { "Comply", "Refuse" };
+		switch (initMenu("Choose.", options, 2))
+		{
+		case 1:
+			cout << "You slowly raise both hands up." << endl;
+			cout << "'I don't know what's going on, Hillary, but I trust you. You think";
+				break;
+
+
+		case 2:
+			cout << "You stay standing." << endl;
+		}
+		
+	}
+
+	if (standing==false)
+	{
+
+	}
+
+}
+
+void hillaryCall()
+{
+	cout << "'You";
+	Sleep(500); gap();
+	cout << "'You die.";
+	Sleep(1000); gap();
+	cout << "'You die. Right";
+	Sleep(500); gap();
+	cout << "'You die. Right where ";
+	Sleep(500); gap();
+	cout << "'You die. Right where you"<<endl;
+	Sleep(500); gap();
+	cout << "'You die. Right where you stand.'"<<endl;
+	Sleep(2000);
+	system("pause"); gap();
 }
 
 void EVdowntown(stats& you)
