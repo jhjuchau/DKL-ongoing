@@ -1,20 +1,18 @@
-﻿Build started 9/25/2015 2:57:59 AM.
+﻿Build started 10/27/2015 2:07:18 PM.
      1>Project "C:\Users\James Juchau\Desktop\DKL-ongoing\Dankkushland 2.0\Dankkushland 2.0\Dankkushland 2.0.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt "THIS IS DANKKUSHLAND.cpp"
          THIS IS DANKKUSHLAND.cpp
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(90): warning C4101: 'damage' : unreferenced local variable
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(241): warning C4804: '>=' : unsafe use of type 'bool' in operation
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(243): warning C4804: '>=' : unsafe use of type 'bool' in operation
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(245): warning C4804: '>=' : unsafe use of type 'bool' in operation
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(290): warning C4129: '|' : unrecognized character escape sequence
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(291): warning C4129: ' ' : unrecognized character escape sequence
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(291): warning C4129: '|' : unrecognized character escape sequence
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(292): warning C4129: ' ' : unrecognized character escape sequence
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(211): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(213): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(215): warning C4804: '>=' : unsafe use of type 'bool' in operation
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(260): warning C4129: '|' : unrecognized character escape sequence
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(261): warning C4129: ' ' : unrecognized character escape sequence
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(261): warning C4129: '|' : unrecognized character escape sequence
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(262): warning C4129: ' ' : unrecognized character escape sequence
      1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\danklib.h(139): warning C4715: 'isStatEnough' : not all control paths return a value
      1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\menuswitharrowkeys.h(62): warning C4715: 'initMenu' : not all control paths return a value
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(1628): warning C4715: 'storeCheck' : not all control paths return a value
-     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\battlesystem.h(60): warning C4715: 'foe::theirAction' : not all control paths return a value
+     1>c:\users\james juchau\desktop\dkl-ongoing\dankkushland 2.0\dankkushland 2.0\this is dankkushland.cpp(1598): warning C4715: 'storeCheck' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\James Juchau\Desktop\DKL-ongoing\Dankkushland 2.0\Debug\Dankkushland 2014.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\James Juchau\Desktop\DKL-ongoing\Dankkushland 2.0\Debug\Dankkushland 2014.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\James Juchau\Desktop\DKL-ongoing\Dankkushland 2.0\Debug\Dankkushland 2014.lib" /MACHINE:X86 "Debug\THIS IS DANKKUSHLAND.obj"
          Dankkushland 2.0.vcxproj -> C:\Users\James Juchau\Desktop\DKL-ongoing\Dankkushland 2.0\Debug\Dankkushland 2014.exe
@@ -22,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.40
+Time Elapsed 00:00:01.50

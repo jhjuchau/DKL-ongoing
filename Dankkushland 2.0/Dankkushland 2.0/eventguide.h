@@ -16,4 +16,4 @@ you.event[i] == 0 if undone, 1 if done, but they're ints, so other values are po
 
 
 //ctrl+k, ctrl+c == comment selection
-//ctrl+k, ctrl+u == uncomment selection
+//ctrl+k, ctrl+u == uncomment selectionh

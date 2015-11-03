@@ -5,98 +5,61 @@
 #include <stdlib.h> //for sleep()
 using namespace std;
 
-class foe{
-public:
+class skill //an ADT that encapsulates everything a skill can do, including name, number of hits, a power modifier and status inducing flags
+{	
+	public:
 	string name;
-	int maxHP,
-		currHP,
-		pow;
-
-	//you must assign skills in sequential order. skill2 requires a skill1 or the game can freak out
-	string skill1, skill2, skill3;
-
-	//default foe has no skills
-	foe()
+	string flavorText;
+	int numOfHits;
+	int powModifier;
+	skill()			//generic null constructor
 	{
-		skill1 = "none";
-		skill2 = "none";
-		skill3 = "none";
-	}
+		name = "null";
+		flavorText = "This skill should never be called.";
+		numOfHits = 1;
+		powModifier = 1;
+	};
+	skill skillLibrary(string);
+};
 
-	//this will be a giant library of all the enemies in the game 
-	//OR just the most common enemies
-	void createFoe(string in)
+class foe {
+	string name;
+	int pow;
+	skill skills[3];
+
+	foe(string nameIn, int powIn, string skillsIn[3])
 	{
-		/*if (in == "template")
-		{
-			maxHP = 0;
-			currHP = maxHP;
-			pow = 0;
-
-			skill1 = "none";
-		}*/
-
-		if (in == "thug")
-		{
-			name = "Thug";
-			maxHP = 10;
-			currHP = maxHP;
-			pow = 2;
-		}
-
-	}
-	//On their move, they will randomly choose between skills or basic attacks. They are twice as likely to basic attack as they are to do anything else
-	//returns the amount of damage they do
-	int theirAction()
-	{
-		int action = rng();
-
-		if (skill3 != "none")
-		{
-			if (action >= 4){ return basicAttack(); }
-			if ((action > 5) && (action < 8)){}
-		}
-
-	}
-
-	int basicAttack()
-	{
-		int mod = rng1to3(), damage=0, flavor = rng();
-		if (mod == 1){ damage = pow - 1; }
-		if (mod == 2){ damage = pow; }
-		if (mod == 3){ damage = pow + 1; }
-		cout << name << " " << endl;
-		if (flavor == 1){ cout << "takes a swing!" << endl; }
-		if (flavor == 2){ cout << "goes in raw!" << endl; }
-		if (flavor == 3){ cout << "performs a standard attack!" << endl; }
-		if (flavor == 4){ cout << "goes Chris Brown!" << endl; }
-		if (flavor == 5){ cout << "tickles you vehemently!" << endl; }
-		if (flavor == 6){ cout << "lets you have it!" << endl; }
-		if (flavor == 7){ cout << "knocks a tooth out!" << endl; }
-		if (flavor == 8){ cout << "pops you in the nose!" << endl; }
-		if (flavor == 9){ cout << "twists your nipples!" << endl; }
-		if (flavor == 10){ cout<< "slaps your ass!" << endl; }	
-		return damage;
+		name = nameIn;
+		pow = powIn;
 	}
 };
 
-//1 for attack, 2 for item, 3 for skill
-int getYourAction()
+skill skill::skillLibrary(string In)	//this function exists to simplify the assigning of skills to 'foes'. It takes a simple string input and generates the corresponding skill.
 {
-	int sel = 0;
-	while (sel != 1 || sel != 2 || sel != 3)
-	{
-		cout << "Enter the number of the action you want to take:" << endl;
-		cout << "1: Attack" << endl;
-		cout << "2: Use Item" << endl;
-		cout << "3: Tech" << endl;
-		cin >> sel;
-		if (sel != 1 || sel != 2 || sel != 3){ cout << "That ain't no valid option." << endl; }
-	}
-
-	return sel;
+	skill nullSkill;
+	return nullSkill;
 }
 
 
+/* DODGING OVERVIEW
 
+	I want to incorporate a dodging method where you type in a string to avoid the attack:
+	Thug Attacks!
+	DODGE PROMPT -- YOU HAVE #X SECONDS //an actual countdown// 
+	3, 2, 1...
+	THUGANOMICS
+	cin>>dodgeAttempt;
+
+
+	if you type in THUGANOMICS perfectly within some allotted time, you avoid the effects of the attack. there could be various other methods of dodging attacks, like trivia from the game or real life, that wouldn't require
+	a timer
+
+*/
+
+/* PLAYER ATTACK OVERVIEW
+	
+	I want to make a different playstyle for each player stat, and allow the player to attack via Strength, Intelligence, Charisma, or by Talking.
+	Strength attacks would randomly generate to keys that you have to mash. I'd make it so the two keys 
+
+*/
 #endif

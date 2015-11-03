@@ -78,36 +78,6 @@ void newItem(stats&, string);
 void deleteItem(stats&, string);
 bool isInInventory(stats&, string);
 
-//BATTLE SYSTEM*************************************************
-void displayFightStats(stats& you, foe& enemy)
-{
-	cout << you.name << ":" << "\t\t\t" << enemy.name << ":" << endl;
-	cout << "HP: " << you.currHP << "/" << you.HP << "\t\t\t" << "HP: " << enemy.currHP << "/" << enemy.maxHP << endl;
-}
-
-void fightStart(stats& you, foe& enemy)
-{
-	int sel, damage;
-	system("CLS");
-	cout << enemy.name << " wants to throw down!" << endl;
-	Sleep(3000);
-	system("CLS");
-
-	while (you.currHP > 0 && enemy.currHP > 0)
-	{
-		displayFightStats(you, enemy);
-		sel=getYourAction();
-			if (sel == 1){ cout << "Do a basic attack" << endl ; }
-			if (sel == 2){ cout << "Use an item" << endl; }
-			if (sel == 3){ cout << "Use a skill, but those aren't implemented yet." << endl; }
-			
-		enemy.theirAction();
-
-	}
-}
-
-
-
 
 //SAVE RELATED STUFF********************************************
 int initialSaveCheck();
