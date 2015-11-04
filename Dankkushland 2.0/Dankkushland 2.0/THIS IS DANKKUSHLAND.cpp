@@ -114,6 +114,7 @@ void daClub(stats&);
 	void hallway(stats&);
 	void beeOffice(stats&);
 		void hillaryCall();
+		void inTheChair();
 
 //undefined
 void EVdowntown(stats&);
@@ -632,6 +633,7 @@ void loadmap(stats& you) //takes you.loc and puts you in the function for that m
 	if (you.loc == 13){ cityHall(you); }
 	if (you.loc == 14){ mayorOffice(you); }
 	if (you.loc == 15){ HWY101(you); }
+	if (you.loc == 16){ inTheChair(you); }
 }
 
 string mapcout(stats& you) //calls out the map when offering you your save file
@@ -652,7 +654,7 @@ string mapcout(stats& you) //calls out the map when offering you your save file
 	if (you.loc == 13){ return "Evergreen City: City Hall"; }
 	if (you.loc == 14){ return "Evergreen City: Mayor's Office"; }
 	if (you.loc == 15){ return "Highway 101"; }
-	if (you.loc == 16){ return "Weedmont Hills Square"; }
+	if (you.loc == 16){ return "In The Chair."; }
 	if (you.loc == 17){ return "Kenzo's"; }
 	if (you.loc == 18){ return "Weedmont Hills: North"; }
 	if (you.loc == 19){ return "Weedmont Hills: Jason's Church"; }
@@ -1730,16 +1732,14 @@ void hallway(stats& you)
 			cout << "You smart, but you're a coward and afraid. +2 intelligence, -2 charisma." << endl; 
 			you.intel += 2;
 			you.charisma -= 2;
+			you.event[11] = 1;
 			system("pause");
 			cout << "As you turn to leave, you hear the door to Bee's office swing open." << endl;
 			cout << "'That's " << you.name << ", right, La?' you hear a familiar voice say." << endl;
-			cout << "'Yep.' Alex responds curtly. 'Want to see ";
-			if (you.name=="Jackie" || you.name=="Hillary" || you.name=="Chelsea" || you.name=="Cheyenne" || you.name=="Katie")
-			{cout << "her?" << endl;}
-			else { cout << "them?" << endl; }
+			cout << "'Yep.' Alex responds curtly. 'Want to see them?"<<endl;
 			cout << "'Yes. Now.' the voice demands, and your hear footsteps walk to a corner of the office.";
 			cout << "You turn, but Alex is already up and has you by the arm, guiding you inside." << endl;
-			cout << "The inside of the office has more smoke than an ogre has layers. No windows either; prime hotbox spot." << endl;
+			cout << "The inside of the office has more smoke than an ogre has layers. The door is sealed along its rim, too; prime hotbox spot." << endl;
 			cout << "Before you can react, you're standing in front of Bee's desk, and Alex storms out the room, ";
 			cout << "slamming the door with the force of a guy whose mother takes all his blankets while he sleeps." << endl;
 			system("pause"); gap();
@@ -1750,6 +1750,7 @@ void hallway(stats& you)
 		{
 			gap();
 			cout << "Gutsy. +1 charisma." << endl; you.charisma += 1;
+			you.event[11] = 2;
 			cout << "You swallow your fear, and then your joint, and twist the knob." << endl;
 			cout << "As soon as the door cracks open just a bit, dense smoke and dim light pour  out of the slat." << endl;
 			cout << "You drag the heavy door across its parabolic arc. You can barely make out an    ornate wooden desk in the windowless room. " << endl;
@@ -1781,9 +1782,9 @@ void beeOffice(stats& you)
 	system("pause"); gap();
 
 
-	string options[3] = { "Stay standing", "Sit Down", "Walk out" };
+	string options[2] = { "Stay standing", "Sit Down"};
 	boolean standing = false;
-	switch (initMenu("How do you react to Bee?", options, 3))
+	switch (initMenu("How do you react to Bee?", options, 2))
 	{
 	case 1:
 	{
@@ -1812,8 +1813,8 @@ void beeOffice(stats& you)
 			standing = true;
 			cout << "You chose to stay standing. Your knees almost gave out, ";
 			cout << "but with your overwhelming SMARTS, your comprehension of gravity and the universe allowed you to levitate off the ground." << endl;
-			cout << "You quickly corporealize this understanding into an ORB OF LEVITATION, which drains your mental energy significantly." << endl;
-			cout << "You lose 5 intelligence out of exhaustion." << endl;
+			cout << "You quickly corporealize this understanding into an orb of levitation, which drains your mental energy significantly." << endl;
+			cout << "You lose 5 intelligence out of exhaustion, but gain an untold treasure." << endl;
 			newItem(you, "LevitationOrb");
 			you.intel -= 5;
 			system("pause"); gap();
@@ -1855,12 +1856,11 @@ void beeOffice(stats& you)
 
 		else //you unsuccesfully try to stand, falling back into the chair
 		{
+			standing = false;
 			cout << "You chose to stay standing. Unfortunately, you don't have enough SWOLE to keep your nervous knees from buckling." << endl;
 			cout << "You stumble backwards and fall into the chair. Embarassing af, bruh. -2 charisma." << endl;
 			you.charisma -= 2;
-			standing = false;
-			cout << "You hear a soft chuckle from behind the chair." << endl;
-		}
+		}	//stamding = false, so this option will continue in the else block of if(standing==true), written below
 		break;
 	}
 
@@ -1870,21 +1870,20 @@ void beeOffice(stats& you)
 		cout << "You chose to sit down. You don't got nothing to gain from pressing the issue." << endl;
 		cout << "Smart choice. +2 SMARTS. But that's pansy shit. -2 CHARISMA." << endl;
 		you.intel += 2; you.charisma -= 2;
-		cout << "You hear a soft chuckle from behind the chair." << endl;
 		break;
-	}
+	}	//stamding = false, so this option will continue in the else block of if(standing==true), written belows
 
-	case 3:
-	{
-		standing = true;
-		cout << "'Feh, I don't need any pathetic friends.' you spit as you turn towards the door." << endl;
-		cout << "You grab the knob and turn it harder than you turned on the Hidden Leaf Village." << endl;
-		cout << "Your EDGE level has increased!" << endl;
-		you.edge++;
-		//Insert Alex boss fight here.
-		cout << "*INCLUDE* alex boss fight" << endl;
-		break;
-	}
+	//case 3:
+	//{
+	//	standing = true;
+	//	cout << "'Feh, I don't need any pathetic friends.' you spit as you turn towards the door." << endl;
+	//	cout << "You grab the knob and turn it harder than you turned on the Hidden Leaf Village." << endl;
+	//	cout << "Your EDGE level has increased!" << endl;
+	//	you.edge++;
+	//	//Insert Alex boss fight here.
+	//	cout << "*INCLUDE* alex boss fight" << endl;
+	//	break;
+	//}
 	}
 
 	if (standing == true)
@@ -1949,7 +1948,13 @@ void beeOffice(stats& you)
 		{
 		case 1:
 			cout << "You slowly raise both hands up." << endl;
-			cout << "'I don't know what's going on, Hillary, but I trust you. You think";
+			cout << "'I don't know what's going on, Hillary, but I trust you.' Your words come out slowly, carefully."<<endl;
+			cout << "Hillary's hands don't move, but her eyes soften slightly. 'Please, get in. I'll make sure everything works out.'" << endl;
+			cout << "Arms still raised, like a playa in front of the cops, you sidestep towards the chair." << endl;
+			cout << "Your short, sharp, breaths catch a whiff of that Sea Mist; just standing near it gets you a little faded." << endl;
+			cout << "You ease yourself into the recliner. Hillary slides back to the button on the desk, gun still loaded and pointed right at you." << endl;
+			system("pause"); gap();
+			inTheChair(you);
 				break;
 
 
@@ -1961,7 +1966,12 @@ void beeOffice(stats& you)
 
 	if (standing==false)
 	{
-
+		cout << "You hear a soft chuckle from behind the chair." << endl;
+		cout << "'Thanks for playing along, " << you.name << ",' you hear Bee say, almost almost whispering." << endl;
+		cout << "You see Bee's arm raise, but what's in her hand? Looks like a switch or --" << endl;
+		cout << "Her thumb drops on the button in the center, and your hear mechanical chunking sounds from above you." << endl;
+		cout << "Before you have time to react, a glass dome has dropped over the entire chair. Your heart pounds, but you suddenly, abnormally begin to feel relaxed, sleepy even." << endl;
+		cout << "Through your now-heavy eyelids, you see the dome filling with blue smoke. 'Sea Mist...' you say, recognizing the  ";
 	}
 
 }
@@ -1981,6 +1991,15 @@ void hillaryCall()
 	cout << "'You die. Right where you stand.'"<<endl;
 	Sleep(2000);
 	system("pause"); gap();
+}
+
+void inTheChair(stats& you)
+{
+	you.loc = 16;
+	save(you);	//for dramatic effect
+	system("pause"); gap();
+
+	cout << ""
 }
 
 void EVdowntown(stats& you)

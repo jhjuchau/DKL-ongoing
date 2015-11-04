@@ -16,7 +16,7 @@ MAPS:
 13: EV City Hall			 cityHall(stats& you)
 14: EV Mayor's Office		 mayorOffice(stats& you)
 15: 101						 HWY101(stats& you)    -- UP TO HERE PUT IN loadmap()
-16: Weedmont Center			 weedmontHills(stats& you)
+16: In the chair @ Bee's	 inTheChair(stats& you)
 17: Kenzo's					 kenzos(stats& you)
 18: North Weedmont			 northWeedmont(stats& you)
 19: Jason's Church			 jasonChurch(stats& you)

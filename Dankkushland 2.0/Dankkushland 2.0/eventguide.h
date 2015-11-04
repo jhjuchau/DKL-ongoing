@@ -11,7 +11,7 @@ you.event[i] == 0 if undone, 1 if done, but they're ints, so other values are po
 8: First time in David's store
 9: David discount								0 is default, each ++ is an additional 20% discount
 10: First time in da club                       0 if first time in club, 1 once seen club flavor text, 2 if seen hallway flavor text
-11: Talking with Bee
+11: Talking with Bee							
 */
 
 
